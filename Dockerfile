@@ -4,6 +4,7 @@ RUN rm /etc/nginx/conf.d/*.conf
 
 COPY    ./config/*.conf /etc/nginx/conf.d/
 
+RUN service nginx restart
 
 ENTRYPOINT  nginx -g 'daemon off;'
 
