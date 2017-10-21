@@ -11,7 +11,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 RUN rm /etc/nginx/sites-enabled/default
 
-COPY ./config/ /etc/nginx/sites-enabled/
+COPY ./config/*.conf /etc/nginx/conf.d/
 
 RUN service nginx restart
 
