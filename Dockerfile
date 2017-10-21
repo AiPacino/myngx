@@ -1,17 +1,18 @@
-FROM nginx:latest
+FROM ubuntu:latest
 
-RUN rm /etc/nginx/conf.d/*.conf
+EXPOSE 80 443
 
-COPY    ./config/*.conf /etc/nginx/conf.d/
+RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y nginx
 
-RUN service nginx restart
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+        && ln -sf /dev/stderr /var/log/nginx/error.log
+
+
+RUN rm /etc/nginx/sites-enabled/default
+
+COPY ./config/*.conf /etc/nginx/conf.d/
+
+# RUN service nginx restart
 
 ENTRYPOINT  nginx -g 'daemon off;'
-
-#RUN rm -rf /etc/nginx/conf.d/default.conf
-#
-#COPY config/rollmx.conf /etc/nginx/nginx.conf
-#
-#VOLUME /etc/nginx/conf.d
-#
-#CMD ["nginx", "-g", "daemon off;"]
