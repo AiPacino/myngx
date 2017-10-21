@@ -2,7 +2,8 @@ FROM nginx:latest
 
 RUN rm /etc/nginx/conf.d/*.conf
 
-COPY    ./config/rollmx.conf /etc/nginx/conf.d/
+COPY    ./config/*.conf /etc/nginx/conf.d/
+
 
 ENTRYPOINT  nginx -g 'daemon off;'
 
