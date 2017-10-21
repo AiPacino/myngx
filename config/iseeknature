@@ -9,6 +9,6 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
     location / {
-        proxy_pass http://172.17.0.7:80/;
+        proxy_pass http://47.88.63.95:32775/;
     }
 }
