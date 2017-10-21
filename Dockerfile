@@ -13,6 +13,6 @@ RUN rm /etc/nginx/sites-enabled/default
 
 COPY ./config/ /etc/nginx/sites-enabled/
 
-# RUN service nginx restart
+RUN service nginx restart
 
 ENTRYPOINT  nginx -g 'daemon off;'
